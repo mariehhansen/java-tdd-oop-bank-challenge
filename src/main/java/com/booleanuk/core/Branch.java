@@ -11,6 +11,10 @@ public class Branch {
         this.accounts = new ArrayList<>();
     }
 
+    public void addAccount(Account a) {
+        this.accounts.add(a);
+    }
+
     public List<Account> getAccounts() {
         return this.accounts;
     }

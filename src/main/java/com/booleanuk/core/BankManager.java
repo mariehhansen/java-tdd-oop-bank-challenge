@@ -12,6 +12,14 @@ public class BankManager {
         this.branches = new ArrayList<>();
     }
 
+    public void addBranch(Branch b) {
+        this.branches.add(b);
+    }
+
+    public List<Branch> getBranches() {
+        return this.branches;
+    }
+
     public List<Account> getAccounts(Branch branch) {
         for (Branch b : branches) {
             if (b.equals(branch) && !branch.getAccounts().isEmpty()) {
