@@ -19,7 +19,7 @@ public class CoreTest {
 
     // ACCOUNT
     @Test
-    public void getBalance() {
+    void getBalance() {
         Account a = new SavingsAccount(1);
         a.deposit(100.0f);
         a.withdraw(60.0f);
@@ -27,13 +27,13 @@ public class CoreTest {
     }
 
     @Test
-    public void getAccountNumber() {
+    void getAccountNumber() {
         Account a = new CurrentAccount(2);
         Assertions.assertEquals(2, a.getAccountId());
     }
 
     @Test
-    public void getTransactionsAccount() {
+    void getTransactionsAccount() {
         Account a = new SavingsAccount(1);
         a.deposit(100.0f);
         a.withdraw(50.0f);
@@ -67,14 +67,15 @@ public class CoreTest {
         BankManager bm = new BankManager();
         Account a = new CurrentAccount(1);
         a.deposit(100);
-        Assertions.assertFalse(bm.approveOverdraft(a, 100000));
+        Assertions.assertFalse(bm.approveOverdraft(a, 10000));
     }
 
     // BANK MANAGER
     @Test
-    public void addBranch() {
+    void addBranch() {
         BankManager bm = new BankManager();
         Branch b = new Branch();
+        bm.addBranch(b);
         Assertions.assertEquals(List.of(b), bm.getBranches());
     }
 
@@ -83,6 +84,8 @@ public class CoreTest {
         BankManager bm = new BankManager();
         Branch b = new Branch();
         Account a = new SavingsAccount(1);
+        b.addAccount(a);
+        bm.addBranch(b);
         Assertions.assertEquals(List.of(a), bm.getAccounts(b));
     }
 

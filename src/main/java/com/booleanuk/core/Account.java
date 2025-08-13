@@ -69,7 +69,7 @@ abstract public class Account {
         return dtForm.format(date);
     }
 
-    public String toString() {
+    public String getTransactionStatement() {
         float b = 0;
         String str = "";
         str += String.format("%-15s || %-15s || %-15s || %s" , "date", "credit", "debit", "balance" );

@@ -32,7 +32,7 @@ public class BankManager {
     }
 
     public boolean approveOverdraft(Account account, float amount) {
-        if (account instanceof CurrentAccount && account.getBalance() - amount < 5000) {
+        if (account instanceof CurrentAccount && (account.getBalance() - amount > 5000)) {
             return true;
         }
         return false;
