@@ -31,4 +31,12 @@ public class BankManager {
         }
         return null;
     }
+
+    public static void main(String[] args) {
+        Account a = new CurrentAccount(1);
+        a.deposit(100);
+        a.deposit(200);
+        a.withdraw(40);
+        System.out.println(a.toString());
+    }
 }

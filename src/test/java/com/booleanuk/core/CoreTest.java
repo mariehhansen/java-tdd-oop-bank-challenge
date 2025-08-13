@@ -28,7 +28,7 @@ public class CoreTest {
         Account a = new SavingsAccount(1);
         a.deposit(100.0f);
         a.withdraw(50.0f);
-        Map<String, Float> map = a.getTransactions();
+        Map<Integer, Transaction> map = a.getTransactions();
         Assertions.assertEquals(2, map.size());
     }
 
