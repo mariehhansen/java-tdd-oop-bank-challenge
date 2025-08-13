@@ -30,4 +30,7 @@ public class CoreTest {
         Map<String, Float> map = a.getTransactions();
         Assertions.assertEquals(2, map.size());
     }
+
+    // BANK MANAGER
+
 }
