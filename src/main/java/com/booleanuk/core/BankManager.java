@@ -5,7 +5,6 @@ import java.util.List;
 
 public class BankManager {
 
-    // private List<Account> accounts; // needed? each branch has the list
     private List<Branch> branches;
 
     public BankManager() {

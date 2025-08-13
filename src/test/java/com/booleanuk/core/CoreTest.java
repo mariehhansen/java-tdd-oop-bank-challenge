@@ -8,10 +8,18 @@ import java.util.Map;
 
 public class CoreTest {
 
+    // BRANCH
+    @Test
+    void addAndGetAccount() {
+        Account a = new SavingsAccount(1);
+        Branch b = new Branch();
+        b.addAccount(a);
+        Assertions.assertEquals(List.of(a), b.getAccounts());
+    }
 
     // ACCOUNT
     @Test
-    public void shouldGetBalance() {
+    public void getBalance() {
         Account a = new SavingsAccount(1);
         a.deposit(100.0f);
         a.withdraw(60.0f);
@@ -19,13 +27,13 @@ public class CoreTest {
     }
 
     @Test
-    public void shouldGetAccountNumber() {
+    public void getAccountNumber() {
         Account a = new CurrentAccount(2);
         Assertions.assertEquals(2, a.getAccountId());
     }
 
     @Test
-    public void shouldGetTransactions() {
+    public void getTransactionsAccount() {
         Account a = new SavingsAccount(1);
         a.deposit(100.0f);
         a.withdraw(50.0f);
@@ -33,26 +41,69 @@ public class CoreTest {
         Assertions.assertEquals(2, map.size());
     }
 
-    // BANK MANAGER
     @Test
-    public void shouldHaveBranch() {
-        BankManager bm = new BankManager();
-        Branch b = new Branch();
-        Account sa = new SavingsAccount(1);
-        Account ca = new CurrentAccount(2);
-        bm.addBranch(b);
-        b.addAccount(sa);
-        b.addAccount(ca);
-        Assertions.assertEquals(List.of(sa, ca), bm.getAccounts(b));
+    void getAccountId() {
+        Account a = new SavingsAccount(1);
+        Assertions.assertEquals(1, a.getAccountId());
     }
 
     @Test
-    public void shouldGetBranches() {
+    void deposit() {
+        Account a = new CurrentAccount(1);
+        a.deposit(100);
+        Assertions.assertEquals(100, a.getBalance());
+    }
+
+    @Test
+    void withdraw() {
+        Account a = new CurrentAccount(1);
+        a.deposit(100);
+        a.withdraw(1);
+        Assertions.assertEquals(99, a.getBalance());
+    }
+
+    @Test
+    void approveOverdraft() {
         BankManager bm = new BankManager();
-        Branch b1 = new Branch();
-        Branch b2 = new Branch();
-        bm.addBranch(b1);
-        bm.addBranch(b2);
-        Assertions.assertEquals(List.of(b1, b2), bm.getBranches());
+        Account a = new CurrentAccount(1);
+        a.deposit(100);
+        Assertions.assertFalse(bm.approveOverdraft(a, 100000));
+    }
+
+    // BANK MANAGER
+    @Test
+    public void addBranch() {
+        BankManager bm = new BankManager();
+        Branch b = new Branch();
+        Assertions.assertEquals(List.of(b), bm.getBranches());
+    }
+
+    @Test
+    void getAccounts() {
+        BankManager bm = new BankManager();
+        Branch b = new Branch();
+        Account a = new SavingsAccount(1);
+        Assertions.assertEquals(List.of(a), bm.getAccounts(b));
+    }
+
+    // TRANSACTION
+    @Test
+    void getType() {
+        Transaction tr = new Transaction("123", 123, "credit");
+        Assertions.assertEquals("123", tr.getTime());
+    }
+
+    @Test
+    void getAmount() {
+        Transaction tr = new Transaction("123", 123, "credit");
+        Assertions.assertEquals(123, tr.getAmount());
+
+    }
+
+    @Test
+    void getTransactionId() {
+        Transaction tr = new Transaction("123", 123, "credit");
+        Assertions.assertEquals("credit", tr.getType());
+
     }
 }
