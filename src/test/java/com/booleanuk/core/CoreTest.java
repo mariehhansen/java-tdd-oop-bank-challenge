@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class CoreTest {
 
+
     // ACCOUNT
     @Test
     public void shouldGetBalance() {

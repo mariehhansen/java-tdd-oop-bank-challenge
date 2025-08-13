@@ -32,11 +32,21 @@ public class BankManager {
         return null;
     }
 
+    public boolean approveOverdraft(Account account, float amount) {
+        if (account instanceof CurrentAccount && account.getBalance() - amount < 5000) {
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
-        Account a = new CurrentAccount(1);
-        a.deposit(100);
-        a.deposit(200);
-        a.withdraw(40);
-        System.out.println(a.toString());
+        Account account = new CurrentAccount(1);
+        account.deposit(100000);
+        account.getTransactions();
+        account.deposit(200);
+        account.getTransactions();
+        account.withdraw(50);
+        account.getTransactions();
+        System.out.println(account.toString());
     }
 }

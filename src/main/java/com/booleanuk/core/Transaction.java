@@ -2,9 +2,9 @@ package com.booleanuk.core;
 
 public class Transaction {
 
-    private String time;
-    private float amount;
-    private String type;
+    private final String time;
+    private final float amount;
+    private final String type;
     private final int transactionId; // bad for testing ;(
     private static int nextTransactionId = 1;
 
@@ -29,10 +29,5 @@ public class Transaction {
 
     public String getTime() {
         return this.time;
-    }
-
-    @Override
-    public String toString() {
-        return "";
     }
 }
