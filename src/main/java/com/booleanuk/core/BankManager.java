@@ -37,15 +37,4 @@ public class BankManager {
         }
         return false;
     }
-
-    public static void main(String[] args) {
-        Account account = new CurrentAccount(1);
-        account.deposit(100000);
-        account.getTransactions();
-        account.deposit(200);
-        account.getTransactions();
-        account.withdraw(50);
-        account.getTransactions();
-        System.out.println(account.toString());
-    }
 }
