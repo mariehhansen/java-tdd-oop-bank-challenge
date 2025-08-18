@@ -34,24 +34,12 @@ abstract public class Account {
     }
 
     public void deposit(float amount) {
-        try {
-            Thread.sleep(1000);
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         this.balance += amount;
         Transaction tr = new Transaction(dtFormatter(LocalDate.now()), amount, "credit");
         this.transactions.put(tr.getTransactionId(), tr);
     }
 
     public void withdraw(float amount) {
-        try {
-            Thread.sleep(1000);
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         if (amount > this.balance && this.bm.approveOverdraft(this, amount)) {
             this.balance -= amount;
         }
